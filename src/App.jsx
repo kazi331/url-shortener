@@ -1,15 +1,23 @@
 import axios from 'axios';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import 'react-circular-progressbar/dist/styles.css';
 import toast, { Toaster } from 'react-hot-toast';
+import introJs from 'intro.js';
+import './intro/styles/intro.css'
+
 import { EmailIcon, EmailShareButton, TelegramIcon, TelegramShareButton, WhatsappIcon, WhatsappShareButton } from 'react-share';
 import './App.css';
+
+// import {CircleProgress} from 'react-gradient-progress'
+
+
 
 function App() {
   const [longURL, setLongURL] = useState('')
   const [shortURL, setShortURL] = useState('');
-  const [deviceInfo, setDeviceInfo] = useState("");
-
+  const [deviceInfo, setDeviceInfo] = useState(false);
+  const [info, setInfo] = useState(false)
+  const [dark, setDark] = useState(false);
   const shortenURL = async (e) => {
     e.preventDefault();
     if (longURL == "") {
@@ -40,28 +48,41 @@ function App() {
     const deviceModel = navigator.appVersion.split(')')[0].split('(')[1]
     const platform = navigator.userAgentData.platform;
     setDeviceInfo({ platform, deviceModel })
-    console.log(navigator.appVersion)
+    console.log('show device info')
+  }
+  useEffect(() => {
+    showDeviceInfo();
+    // introJs().setOptions({
+    //   tooltipClass: 'customIntro'
+    // }).start();
+    // introJs().addHints();
+  }, []);
+
+  const mode = dark ? 'Dark' : 'Light'
+  const btnTitle = info ? 'Hide Device Info' : 'Show Device Info'
+  const switchMode = () => {
+    console.log('switch mode')
   }
 
   return (
-    <div className='text-gray-200 text-left'>
-      <h2 className='text-blue-400 font-medium text-2xl my-2'><span className='text-orange-500'>URL</span> Shortener</h2>
+    <div className='text-gray-800 dark:text-gray-200 font-medium text-left shadow-xl bg-white dark:bg-[#292c41] p-4 rounded-lg'>
+      <h2 data-step="1" data-intro="Using this, you can short your long url" data-title="URL Shortener" className='text-blue-400 font-medium text-2xl my-2'><span className='text-orange-500'>URL</span> Shortener</h2>
       <form onSubmit={shortenURL} className="">
-        <input value={longURL} onChange={(e) => setLongURL(e.target.value)} type="text" className='px-2 py-1 rounded bg-gray-800 bg-opacity-30 ring-1 focus:outline-none' placeholder='Past long url' />
-        <button className='ml-2 px-2 py-1 bg-sky-500 rounded-md hover:bg-sky-600'>Short URL</button>
+        <input data-step="2" data-intro="Past your long url here" data-title="Past long URL" data-hint="Past your long link here!!" value={longURL} onChange={(e) => setLongURL(e.target.value)} type="text" className='p-2 rounded dark:bg-gray-800 bg-opacity-30 ring-1 focus:outline-none' placeholder='Past long url' />
+        <button data-step="3" data-title="Click to short" data-intro="Click here to shorten your long url" className='ml-2 px-2 py-1 text-white bg-sky-500 rounded-md hover:bg-sky-600'>Short URL</button>
       </form>
 
       <h2 className='font-medium my-2 text-green-500'>Shorten URL</h2>
       <div className="w-full">
-        <input disabled value={shortURL} type="text" className='w-full max-w-xs px-4 py-2  pr-12 rounded bg-[#3e4550] bg-opacity-30 focus:outline-none' />
-        <button onClick={() => toast.success('Copied to Clipboard')} className='-ml-10 ring-1 ring-gray-600 hover:ring-gray-500 p-2 rounded-md active:bg-gray-700'>
-          <CopyToClipboard text={shortURL}>
-            {copyIcon}
-          </CopyToClipboard>
+        <input disabled value={shortURL} type="text" className='w-full max-w-xs px-4 py-2  pr-12 rounded bg-gray-400 dark:bg-gray-700 bg-opacity-30 focus:outline-none' />
+        <button onClick={copyToClipboard} className='-ml-10 ring-1 ring-gray-600 hover:ring-gray-500 p-2 rounded-md active:bg-gray-700'>
+
+          {copyIcon}
+
         </button>
 
       </div>
-     
+
 
       {/* share links  */}
       {shortURL && <div className='my-2 flex gap-x-2'>
@@ -78,11 +99,19 @@ function App() {
 
 
 
-      <button onClick={showDeviceInfo}>Show Device Info</button>
-      {deviceInfo && <div>
+      <button className='ring-1 px-2 py-1 my-2 rounded-md' onClick={() => {
+        setInfo(!info);
+        switchMode();
+      }}>{btnTitle}</button>
+      {info && <div>
         <p>Device: {deviceInfo.deviceModel}</p>
         <p>Platform: {deviceInfo.platform}</p>
       </div>}
+
+      {/* <CircularProgressbar value="50" text="50%" />
+      <CircularProgressbar value={value} maxValue={1} text={`${value * 100}%`} /> */}
+
+      {/* <CircleProgress percentage={75} strokeWidth={8} /> */}
 
 
 
@@ -92,6 +121,10 @@ function App() {
           className: 'bg-gray-800 text-gray-200 p-1',
           duration: 1500
         }} />
+      <button onClick={() => {
+        setDark(!dark);
+        switchMode();
+      }} className="fixed top-4 right-6 ring-1 px-2 py-1 rounded">{mode}</button>
     </div>
   )
 }

@@ -38,8 +38,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@vitejs/plugin-react", "virtual:c803cc2ed0d4984eafc827e14334c86fc0ec4f0eff79969636860c47c5c3d45fcae9b393aee5129b7298c4bac9f2c75d1b25b1f22823cbae9554bc19a62a5bf3#npm:2.0.0"],\
             ["autoprefixer", "virtual:c803cc2ed0d4984eafc827e14334c86fc0ec4f0eff79969636860c47c5c3d45fcae9b393aee5129b7298c4bac9f2c75d1b25b1f22823cbae9554bc19a62a5bf3#npm:10.4.7"],\
             ["axios", "npm:0.27.2"],\
+            ["intro.js", "npm:6.0.0"],\
             ["postcss", "npm:8.4.14"],\
             ["react", "npm:18.2.0"],\
+            ["react-circular-progressbar", "virtual:c803cc2ed0d4984eafc827e14334c86fc0ec4f0eff79969636860c47c5c3d45fcae9b393aee5129b7298c4bac9f2c75d1b25b1f22823cbae9554bc19a62a5bf3#npm:2.1.0"],\
             ["react-copy-to-clipboard", "virtual:c803cc2ed0d4984eafc827e14334c86fc0ec4f0eff79969636860c47c5c3d45fcae9b393aee5129b7298c4bac9f2c75d1b25b1f22823cbae9554bc19a62a5bf3#npm:5.1.0"],\
             ["react-dom", "virtual:c803cc2ed0d4984eafc827e14334c86fc0ec4f0eff79969636860c47c5c3d45fcae9b393aee5129b7298c4bac9f2c75d1b25b1f22823cbae9554bc19a62a5bf3#npm:18.2.0"],\
             ["react-hot-toast", "virtual:c803cc2ed0d4984eafc827e14334c86fc0ec4f0eff79969636860c47c5c3d45fcae9b393aee5129b7298c4bac9f2c75d1b25b1f22823cbae9554bc19a62a5bf3#npm:2.3.0"],\
@@ -1827,6 +1829,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["intro.js", [\
+        ["npm:6.0.0", {\
+          "packageLocation": "./.yarn/cache/intro.js-npm-6.0.0-25d3900c18-e4fd8bd372.zip/node_modules/intro.js/",\
+          "packageDependencies": [\
+            ["intro.js", "npm:6.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["ip", [\
         ["npm:2.0.0", {\
           "packageLocation": "./.yarn/cache/ip-npm-2.0.0-204facb3cc-cfcfac6b87.zip/node_modules/ip/",\
@@ -2565,6 +2576,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["react-circular-progressbar", [\
+        ["npm:2.1.0", {\
+          "packageLocation": "./.yarn/cache/react-circular-progressbar-npm-2.1.0-11ab1459b1-dc118010a8.zip/node_modules/react-circular-progressbar/",\
+          "packageDependencies": [\
+            ["react-circular-progressbar", "npm:2.1.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:c803cc2ed0d4984eafc827e14334c86fc0ec4f0eff79969636860c47c5c3d45fcae9b393aee5129b7298c4bac9f2c75d1b25b1f22823cbae9554bc19a62a5bf3#npm:2.1.0", {\
+          "packageLocation": "./.yarn/__virtual__/react-circular-progressbar-virtual-013afb4565/0/cache/react-circular-progressbar-npm-2.1.0-11ab1459b1-dc118010a8.zip/node_modules/react-circular-progressbar/",\
+          "packageDependencies": [\
+            ["react-circular-progressbar", "virtual:c803cc2ed0d4984eafc827e14334c86fc0ec4f0eff79969636860c47c5c3d45fcae9b393aee5129b7298c4bac9f2c75d1b25b1f22823cbae9554bc19a62a5bf3#npm:2.1.0"],\
+            ["@types/react", "npm:18.0.15"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["react-copy-to-clipboard", [\
         ["npm:5.1.0", {\
           "packageLocation": "./.yarn/cache/react-copy-to-clipboard-npm-5.1.0-de9742f2bc-f00a4551b9.zip/node_modules/react-copy-to-clipboard/",\
@@ -3095,8 +3128,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@vitejs/plugin-react", "virtual:c803cc2ed0d4984eafc827e14334c86fc0ec4f0eff79969636860c47c5c3d45fcae9b393aee5129b7298c4bac9f2c75d1b25b1f22823cbae9554bc19a62a5bf3#npm:2.0.0"],\
             ["autoprefixer", "virtual:c803cc2ed0d4984eafc827e14334c86fc0ec4f0eff79969636860c47c5c3d45fcae9b393aee5129b7298c4bac9f2c75d1b25b1f22823cbae9554bc19a62a5bf3#npm:10.4.7"],\
             ["axios", "npm:0.27.2"],\
+            ["intro.js", "npm:6.0.0"],\
             ["postcss", "npm:8.4.14"],\
             ["react", "npm:18.2.0"],\
+            ["react-circular-progressbar", "virtual:c803cc2ed0d4984eafc827e14334c86fc0ec4f0eff79969636860c47c5c3d45fcae9b393aee5129b7298c4bac9f2c75d1b25b1f22823cbae9554bc19a62a5bf3#npm:2.1.0"],\
             ["react-copy-to-clipboard", "virtual:c803cc2ed0d4984eafc827e14334c86fc0ec4f0eff79969636860c47c5c3d45fcae9b393aee5129b7298c4bac9f2c75d1b25b1f22823cbae9554bc19a62a5bf3#npm:5.1.0"],\
             ["react-dom", "virtual:c803cc2ed0d4984eafc827e14334c86fc0ec4f0eff79969636860c47c5c3d45fcae9b393aee5129b7298c4bac9f2c75d1b25b1f22823cbae9554bc19a62a5bf3#npm:18.2.0"],\
             ["react-hot-toast", "virtual:c803cc2ed0d4984eafc827e14334c86fc0ec4f0eff79969636860c47c5c3d45fcae9b393aee5129b7298c4bac9f2c75d1b25b1f22823cbae9554bc19a62a5bf3#npm:2.3.0"],\

@@ -1,10 +1,9 @@
-
-
 a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -15,7 +14,6 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #0D1117;
 }
 
 h1 {
@@ -26,13 +24,46 @@ h1 {
 
 
 @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+  /* a {
+    color: #646cff;
+    text-decoration: inherit;
   }
+
+  a:hover {
+    color: #535bf2;
+  } */
+
+  body {
+    background-color: #f8f7ff;
+  }
+
   a:hover {
     color: #747bff;
   }
+
+  button {
+    background-color: #f9f9f9;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .customIntro * {
+    color: #e0e0e0;
+    font-size: 18px;
+    background-color: #1C1E2E;
+  }
+  
+  .customIntro .introjs-tooltip-title {
+    color: #ebebeb;
+  }
+
+  body {
+    background-color: #1C1E2E;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
   button {
     background-color: #f9f9f9;
   }

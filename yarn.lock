@@ -1493,6 +1493,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"intro.js@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "intro.js@npm:6.0.0"
+  checksum: e4fd8bd372792c59f4a1ad6d5b80c8d4d834af14d07bdeabf6f291208970ff518715e71e122f5925e6a307a51de85bf0fe9922b4c4741954db36a3f1f132cd48
+  languageName: node
+  linkType: hard
+
 "ip@npm:^2.0.0":
   version: 2.0.0
   resolution: "ip@npm:2.0.0"
@@ -2091,6 +2098,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-circular-progressbar@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "react-circular-progressbar@npm:2.1.0"
+  peerDependencies:
+    react: ^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: dc118010a8f94733daafac586c969f7e889ad0736d96a0fda79406ee62e9410848abfd3dee4887bb0ff46b99e1f8c86ee1afabc88dfbf4dcb95107b22de1d6d7
+  languageName: node
+  linkType: hard
+
 "react-copy-to-clipboard@npm:^5.1.0":
   version: 5.1.0
   resolution: "react-copy-to-clipboard@npm:5.1.0"
@@ -2538,8 +2554,10 @@ __metadata:
     "@vitejs/plugin-react": ^2.0.0
     autoprefixer: ^10.4.7
     axios: latest
+    intro.js: ^6.0.0
     postcss: ^8.4.14
     react: ^18.2.0
+    react-circular-progressbar: ^2.1.0
     react-copy-to-clipboard: ^5.1.0
     react-dom: ^18.2.0
     react-hot-toast: ^2.3.0
