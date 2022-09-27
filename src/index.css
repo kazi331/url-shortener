@@ -1,11 +1,14 @@
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+:root{
+  --bg: #F8F7FF;
+  --text: #1C1E2E;
+  --btn-bg: #646CFF;
+  --container-bg: #FFFFFF;
 }
-
-a:hover {
-  color: #535bf2;
+:root.dark{
+  --bg: #1C1E2E;
+  --text: #cfcfcf;
+  --btn-bg: #e0e0e0;
+  --container-bg: #292C41;
 }
 
 body {
@@ -14,61 +17,23 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: var(--bg);
+}
+.container{
+  background-color: var(--container-bg);
+  color: var(--text)
+}
+button {
+  background-color: var(--btn-bg);
+  color: var(--btn-text)
+}
+.customIntro{
+  backdrop-filter: blur(2px);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
 
-
-
-@media (prefers-color-scheme: light) {
-/* @media (data-theme: light) { */
-  /* a {
-    color: #646cff;
-    text-decoration: inherit;
-  }
-
-  a:hover {
-    color: #535bf2;
-  } */
-
-  body {
-    background-color: #f8f7ff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
 @media (prefers-color-scheme: dark) {
-/* @media (data-theme: dark) { */
-  .customIntro * {
-    color: #e0e0e0;
-    font-size: 18px;
-    background-color: #1C1E2E;
-  }
-  
-  .customIntro .introjs-tooltip-title {
-    color: #ebebeb;
-  }
 
-  body {
-    background-color: #1C1E2E;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
 @tailwind base;

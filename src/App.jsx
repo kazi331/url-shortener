@@ -4,6 +4,8 @@ import 'react-circular-progressbar/dist/styles.css';
 import toast, { Toaster } from 'react-hot-toast';
 import introJs from 'intro.js';
 import './intro/styles/intro.css'
+import './intro/themes/introjs-modern.css'
+// import './intro/themes/introjs-flattener.css'
 
 import { EmailIcon, EmailShareButton, TelegramIcon, TelegramShareButton, WhatsappIcon, WhatsappShareButton } from 'react-share';
 import './App.css';
@@ -17,7 +19,41 @@ function App() {
   const [shortURL, setShortURL] = useState('');
   const [deviceInfo, setDeviceInfo] = useState(false);
   const [info, setInfo] = useState(false)
-  const [dark, setDark] = useState(false);
+  // const [dark, setDark] = useState(false);
+  const [mode, setMode] = useState('')
+
+  useEffect(() => {
+    showDeviceInfo();
+    detectSystemTheme();
+    introJs().setOptions({
+      tooltipClass: 'customIntro'
+    }).start();
+    introJs().addHints();
+  }, []);
+
+  // detech system color scheme 
+  const modeClass = document.documentElement.classList
+  const detectSystemTheme = () => {
+    const darkOs = window.matchMedia('(prefers-color-scheme:dark)').matches;
+    if (darkOs) {
+      setMode('dark')
+      modeClass.add('dark')
+    } else {
+      setMode('light')
+    }
+  }
+  const switchMode = () => {
+    if (mode == 'dark') {
+      setMode('light')
+      modeClass.remove('dark')
+    } else {
+      setMode('dark')
+      modeClass.add('dark')
+    }
+  }
+
+
+
   const shortenURL = async (e) => {
     e.preventDefault();
     if (longURL == "") {
@@ -47,50 +83,22 @@ function App() {
     const platform = navigator.userAgentData.platform;
     setDeviceInfo({ platform, deviceModel })
   }
-  useEffect(() => {
-    showDeviceInfo();
-    detectSystemTheme();
-    introJs().setOptions({
-      tooltipClass: 'customIntro'
-    }).start();
-    introJs().addHints();
-  }, []);
 
-  // detech system color scheme 
-  const detectSystemTheme = () => {
-    const darkScheme = window.matchMedia('(prefers-color-scheme:dark)').matches
-    const osTheme = darkScheme ? 'dark' : 'light'
-    console.log({osTheme})
-  }
-
-  const mode = dark ? 'Dark' : 'Light'
   const btnTitle = info ? 'Hide Device Info' : 'Show Device Info'
-
-  const switchMode = (e) => {
-    const mode = e.target.textContent.toLowerCase();
-    if (mode === 'dark') {
-      document.documentElement.setAttribute("data-theme", "dark");
-      // console.log(document.documentElement)
-      // console.log('dark')
-    } else {
-      document.documentElement.setAttribute("data-theme", "light");
-      // console.log(document.documentElement)
-      // console.log('light')
-    }
-
-  }
-
   return (
-    <div className='text-gray-800 dark:text-gray-200 font-medium text-left shadow-xl bg-white dark:bg-[#292c41] p-4 rounded-lg'>
-      <h2 data-step="1" data-intro="Using this, you can short your long url" data-title="URL Shortener" className='text-blue-400 font-medium text-2xl my-2'><span className='text-orange-500'>URL</span> Shortener</h2>
+    <div className=' container font-medium text-left shadow-xl  p-4 rounded-lg'>
+      <h2 data-step="1" data-intro="Using this, you can short your long url" data-title="URL Shortener" className=' font-medium text-2xl my-2'><span className='text-orange-500'>URL</span> Shortener</h2>
       <form onSubmit={shortenURL} className="">
-        <input data-step="2" data-intro="Past your long url here" data-title="Past long URL" data-hint="Past your long link here!!" value={longURL} onChange={(e) => setLongURL(e.target.value)} type="text" className='p-2 rounded dark:bg-gray-800 bg-opacity-30 ring-1 focus:outline-none' placeholder='Past long url' />
-        <button data-step="3" data-title="Click to short" data-intro="Click here to shorten your long url" className='ml-2 px-2 py-1 text-white bg-sky-500 rounded-md hover:bg-sky-600'>Short URL</button>
+        <input data-step="2" data-intro="Past your long url here" data-title="Past long URL" data-hint="Past your long link here!!" value={longURL} onChange={(e) => setLongURL(e.target.value)} type="text" className='p-2 rounded bg-gray-300 bg-opacity-30 ring-1 focus:outline-none' placeholder='Past long url' />
+        <button data-step="3" data-title="Click to short" data-intro="Click here to shorten your long url" className='ml-2 px-2 py-1  bg-sky-500 rounded-md hover:bg-sky-600'>Short URL</button>
       </form>
 
-      <h2 className='font-medium my-2 text-green-500'>Shorten URL</h2>
+      {/* dark mode button  */}
+      <button onClick={(e) => { switchMode(e); }} className="fixed top-4 right-6 ring-1 px-2 py-1 rounded capitalize">{mode}</button>
+
+      <h2 className='font-medium my-2 '>Shorten URL</h2>
       <div className="w-full">
-        <input disabled value={shortURL} type="text" className='w-full max-w-xs px-4 py-2  pr-12 rounded bg-gray-400 dark:bg-gray-700 bg-opacity-30 focus:outline-none' />
+        <input disabled value={shortURL} type="text" className='w-full max-w-xs px-4 py-2 mb-2  pr-12 rounded bg-gray-400 bg-opacity-30 focus:outline-none' />
         <button onClick={copyToClipboard} className='-ml-10 ring-1 ring-gray-600 hover:ring-gray-500 p-2 rounded-md active:bg-gray-700'>
 
           {copyIcon}
@@ -115,9 +123,8 @@ function App() {
 
 
 
-      <button className='ring-1 px-2 py-1 my-2 rounded-md' onClick={() => {
+      <button data-hint="Click here to show device info" data-title="hello" className='ring-1 px-2 py-1 my-2 rounded-md' onClick={() => {
         setInfo(!info);
-        switchMode();
       }}>{btnTitle}</button>
       {info && <div>
         <p>Device: {deviceInfo.deviceModel}</p>
@@ -134,13 +141,10 @@ function App() {
       <Toaster gutter={8}
         toastOptions={{
           // Define default options
-          className: 'bg-gray-800 text-gray-200 p-1',
+          className: 'bg-gray-800  p-1',
           duration: 1500
         }} />
-      <button onClick={(e) => {
-        setDark(!dark);
-        switchMode(e);
-      }} className="fixed top-4 right-6 ring-1 px-2 py-1 rounded">{mode}</button>
+      
     </div>
   )
 }
