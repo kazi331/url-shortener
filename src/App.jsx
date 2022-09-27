@@ -50,10 +50,10 @@ function App() {
   useEffect(() => {
     showDeviceInfo();
     detectSystemTheme();
-    // introJs().setOptions({
-    //   tooltipClass: 'customIntro'
-    // }).start();
-    // introJs().addHints();
+    introJs().setOptions({
+      tooltipClass: 'customIntro'
+    }).start();
+    introJs().addHints();
   }, []);
 
   // detech system color scheme 
