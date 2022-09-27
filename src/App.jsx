@@ -41,27 +41,43 @@ function App() {
     toast.success('Link copied to clipboard');
     setLongURL('')
   }
-  const clipboardCopy = () => {
-    console.log(navigator.userAgentData.platform)
-  }
+
   const showDeviceInfo = () => {
     const deviceModel = navigator.appVersion.split(')')[0].split('(')[1]
     const platform = navigator.userAgentData.platform;
     setDeviceInfo({ platform, deviceModel })
-    console.log('show device info')
   }
   useEffect(() => {
     showDeviceInfo();
+    detectSystemTheme();
     // introJs().setOptions({
     //   tooltipClass: 'customIntro'
     // }).start();
     // introJs().addHints();
   }, []);
 
+  // detech system color scheme 
+  const detectSystemTheme = () => {
+    const darkScheme = window.matchMedia('(prefers-color-scheme:dark)').matches
+    const osTheme = darkScheme ? 'dark' : 'light'
+    console.log({osTheme})
+  }
+
   const mode = dark ? 'Dark' : 'Light'
   const btnTitle = info ? 'Hide Device Info' : 'Show Device Info'
-  const switchMode = () => {
-    console.log('switch mode')
+
+  const switchMode = (e) => {
+    const mode = e.target.textContent.toLowerCase();
+    if (mode === 'dark') {
+      document.documentElement.setAttribute("data-theme", "dark");
+      // console.log(document.documentElement)
+      // console.log('dark')
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
+      // console.log(document.documentElement)
+      // console.log('light')
+    }
+
   }
 
   return (
@@ -121,9 +137,9 @@ function App() {
           className: 'bg-gray-800 text-gray-200 p-1',
           duration: 1500
         }} />
-      <button onClick={() => {
+      <button onClick={(e) => {
         setDark(!dark);
-        switchMode();
+        switchMode(e);
       }} className="fixed top-4 right-6 ring-1 px-2 py-1 rounded">{mode}</button>
     </div>
   )

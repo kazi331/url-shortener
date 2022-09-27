@@ -24,6 +24,7 @@ h1 {
 
 
 @media (prefers-color-scheme: light) {
+/* @media (data-theme: light) { */
   /* a {
     color: #646cff;
     text-decoration: inherit;
@@ -46,6 +47,7 @@ h1 {
   }
 }
 @media (prefers-color-scheme: dark) {
+/* @media (data-theme: dark) { */
   .customIntro * {
     color: #e0e0e0;
     font-size: 18px;
